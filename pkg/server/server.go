@@ -295,6 +295,7 @@ func (s *Server) Query(sqlclient *ent.Client) *handler.Server {
 	srv := handler.New(archivista.NewSchema(sqlclient))
 	srv.AddTransport(transport.GET{})
 	srv.AddTransport(transport.POST{})
+	srv.AddTransport(transport.Options{})
 	srv.Use(entgql.Transactioner{TxOpener: sqlclient})
 	return srv
 }
